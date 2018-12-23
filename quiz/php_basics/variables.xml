@@ -1,0 +1,19 @@
+<items>
+  <item>
+    <question>What is the output?</question>
+    <code>
+      <![CDATA[
+        <?php
+        echo 1 ^ 2;
+      ]]>
+    </code>
+    <answers>
+      <answer>0</answer>
+      <answer>1</answer>
+      <answer>2</answer>
+      <answer correct="correct">3</answer>
+    </answers>
+    <theory>Bitwise operator XOR accepts only pairs of different bits</theory>
+    <reference>http://php.net/manual/en/language.operators.bitwise.php</reference>
+  </item>
+</items>
