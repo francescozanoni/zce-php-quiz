@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+    <!-- https://www.freeformatter.com/xsd-generator.html -->
+
+    <xs:element name="items">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="item">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="question" maxOccurs="1" minOccurs="1" />
+                            <xs:element ref="code" maxOccurs="1" minOccurs="0" />
+                            <xs:element name="answers" maxOccurs="1" minOccurs="1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="answer" maxOccurs="4" minOccurs="2" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="theory" maxOccurs="1" minOccurs="1" />
+                            <xs:element ref="reference" maxOccurs="1" minOccurs="0" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element type="xs:string" name="question" />
+    <xs:element type="xs:string" name="code" />
+    <xs:element name="answer">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:byte">
+                    <xs:attribute type="xs:string" name="correct" use="optional" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element type="xs:string" name="theory" />
+    <xs:element type="xs:anyURI" name="reference" />
+
+</xs:schema>
