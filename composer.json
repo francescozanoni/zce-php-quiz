@@ -1,0 +1,11 @@
+{
+    "name": "francescozanoni/zce-php-quiz",
+    "description": "Zend PHP certification training quiz",
+    "keywords": ["zce", "training"],
+    "license": "MIT",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": ">=6.0.0",
+        "ext-xml": "*"
+    }
+}
