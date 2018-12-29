@@ -15,7 +15,7 @@ class TestCase extends PHPUnitTestCase
     /**
      * @var string XSD schema file path, used to validate XML files.
      */
-    private $xsdFilePath = __DIR__ . '/../schema.xsd';
+    private $xsdFilePath = __DIR__ . '/../src/schema.xsd';
 
     /**
      * Check whether an XML file is valid.
