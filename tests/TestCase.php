@@ -1,11 +1,15 @@
 <?php
+
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
-class QuizTestCase extends TestCase
+class TestCase extends PHPUnitTestCase
 {
 
+    /**
+     * @var string XSD schema file path, used to validate XML files.
+     */
     private $xsdFilePath = __DIR__ . '/../schema.xsd';
   
     /**
