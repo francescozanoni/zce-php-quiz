@@ -10,7 +10,7 @@ class PhpBasicsTest extends QuizTestCase
         // Enable user error handling
         libxml_use_internal_errors(true);
 
-        $xml = new DOMDocument();
+        $xml = new \DOMDocument();
         $xml->load($xmlFilePath);
 
         $this->assertTrue($xml->schemaValidate($this->xsdFilePath));
