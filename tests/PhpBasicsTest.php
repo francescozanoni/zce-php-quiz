@@ -3,16 +3,12 @@ namespace Tests;
 
 class PhpBasicsTest extends QuizTestCase
 {
+
+    private $basePath = __DIR__ . '/../src/php_basics';
+    
     public function testSyntax()
     {
-        $xmlFilePath = __DIR__ . '/../src/php_basics/syntax.xml';
-        
-        // Enable user error handling
-        libxml_use_internal_errors(true);
-
-        $xml = new \DOMDocument();
-        $xml->load($xmlFilePath);
-
-        $this->assertTrue($xml->schemaValidate($this->xsdFilePath));
+        $this->assertTrue($this->isValidXmlFile($this->basePath . '/syntax.xml'));
     }
+    
 }
