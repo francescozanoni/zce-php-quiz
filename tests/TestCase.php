@@ -8,6 +8,11 @@ class TestCase extends PHPUnitTestCase
 {
 
     /**
+     * @var bool value of XML error handling before executing test suite.
+     */
+    private static $libxmlUseInternalErrors;
+    
+    /**
      * @var string XSD schema file path, used to validate XML files.
      */
     private $xsdFilePath = __DIR__ . '/../schema.xsd';
@@ -22,19 +27,27 @@ class TestCase extends PHPUnitTestCase
     protected function isValidXmlFile($xmlFilePath)
     {
         
-        // Enable user error handling.
-        $previousSettingValue = libxml_use_internal_errors(true);
-
         $xml = new \DOMDocument();
         $xml->load($xmlFilePath);
 
-        $result = $xml->schemaValidate($this->xsdFilePath);
-        
-        // Disable user error handling (if it was disabled before this code).
-        libxml_use_internal_errors($previousSettingValue);
-        
-        return $result;
+        return $xml->schemaValidate($this->xsdFilePath);
         
     }
+
+    public static function setUpBeforeClass()
+    {
     
+        // Enable XML user error handling.
+        self::$libxmlUseInternalErrors = libxml_use_internal_errors(true);
+        
+    }
+
+    public static function tearDownAfterClass()
+    {
+    
+        // Restore previous value of XML error handling.
+        libxml_use_internal_errors(self::$libxmlUseInternalErrors);
+        
+    }
+
 }
