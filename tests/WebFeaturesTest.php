@@ -4,9 +4,12 @@ namespace Tests;
 
 class WebFeaturesTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/web_features';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/web_features';
+
     public function testCookies()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/cookies.xml'));
@@ -41,5 +44,5 @@ class WebFeaturesTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/sessions.xml'));
     }
-    
+
 }

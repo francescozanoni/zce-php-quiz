@@ -4,9 +4,12 @@ namespace Tests;
 
 class ObjectOrientedProgrammingTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/object_oriented_programming';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/object_oriented_programming';
+
     public function testAutoload()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/autoload.xml'));
@@ -71,5 +74,5 @@ class ObjectOrientedProgrammingTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/type_hinting.xml'));
     }
-    
+
 }

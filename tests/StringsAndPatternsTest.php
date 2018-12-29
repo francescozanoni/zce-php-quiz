@@ -4,9 +4,12 @@ namespace Tests;
 
 class StringsAndPatternsTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/strings_and_patterns';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/strings_and_patterns';
+
     public function testEncodings()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/encodings.xml'));
@@ -51,5 +54,5 @@ class StringsAndPatternsTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/searching.xml'));
     }
-    
+
 }

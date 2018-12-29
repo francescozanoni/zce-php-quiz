@@ -5,8 +5,11 @@ namespace Tests;
 class ArraysTest extends TestCase
 {
 
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
     private $basePath = __DIR__ . '/../src/arrays';
-    
+
     public function testArrayFunctions()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/array_functions.xml'));
@@ -31,5 +34,5 @@ class ArraysTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/spl_objects_as_arrays.xml'));
     }
-    
+
 }

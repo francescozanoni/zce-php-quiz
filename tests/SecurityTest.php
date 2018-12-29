@@ -4,9 +4,12 @@ namespace Tests;
 
 class SecurityTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/security';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/security';
+
     public function testConfiguration()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/configuration.xml'));
@@ -71,5 +74,5 @@ class SecurityTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/sql_injection.xml'));
     }
-    
+
 }

@@ -5,8 +5,11 @@ namespace Tests;
 class DataFormatAndTypesTest extends TestCase
 {
 
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
     private $basePath = __DIR__ . '/../src/data_format_and_types';
-    
+
     public function testDatetime()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/datetime.xml'));
@@ -46,5 +49,5 @@ class DataFormatAndTypesTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/xml_extension.xml'));
     }
-    
+
 }

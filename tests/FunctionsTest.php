@@ -4,7 +4,10 @@ namespace Tests;
 
 class FunctionsTest extends TestCase
 {
-
+    
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
     private $basePath = __DIR__ . '/../src/functions';
     
     public function testAnonymousFunctionsClosures()

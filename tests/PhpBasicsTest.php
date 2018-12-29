@@ -4,9 +4,12 @@ namespace Tests;
 
 class PhpBasicsTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/php_basics';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/php_basics';
+
     public function testConfig()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/config.xml'));
@@ -51,5 +54,5 @@ class PhpBasicsTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/variables.xml'));
     }
-    
+
 }

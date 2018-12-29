@@ -4,9 +4,12 @@ namespace Tests;
 
 class IOTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/i_o';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/i_o';
+
     public function testContexts()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/contexts.xml'));
@@ -36,5 +39,5 @@ class IOTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/writing.xml'));
     }
-    
+
 }

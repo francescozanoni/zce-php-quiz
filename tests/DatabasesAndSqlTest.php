@@ -4,9 +4,12 @@ namespace Tests;
 
 class DatabasesAndSqlTest extends TestCase
 {
-
-    private $basePath = __DIR__ . '/../src/databases_and_sql';
     
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
+    private $basePath = __DIR__ . '/../src/databases_and_sql';
+
     public function testJoins()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/joins.xml'));
@@ -31,5 +34,5 @@ class DatabasesAndSqlTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/transactions.xml'));
     }
-    
+
 }

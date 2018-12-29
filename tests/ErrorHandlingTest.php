@@ -5,8 +5,11 @@ namespace Tests;
 class ErrorHandlingTest extends TestCase
 {
 
+    /**
+     * @var string path to folder containing all XML files tested by this suite.
+     */
     private $basePath = __DIR__ . '/../src/error_handling';
-    
+
     public function testErrors()
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/errors.xml'));
@@ -21,5 +24,5 @@ class ErrorHandlingTest extends TestCase
     {
         $this->assertTrue($this->isValidXmlFile($this->basePath . '/throwables.xml'));
     }
-    
+
 }
