@@ -12,10 +12,10 @@
         <answers>
             <answer>Hello </answer>
             <answer>PHP warning:  Undefined command: ECHO</answer>
-            <answer>PHP error:  Undefined command: ECHO</answer>
+            <answer>PHP Parse error:  syntax error</answer>
             <answer correct="correct">Hello World</answer>
         </answers>
-        <theory>Language constructs and functions are case insensitive</theory>
+        <theory>Language constructs are case insensitive</theory>
     </item>
     <item>
         <question>What is the output?</question>
@@ -34,4 +34,58 @@
         <theory>Variables are case sensitive</theory>
         <reference>http://php.net/manual/en/language.variables.basics.php</reference>
     </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                $hello = 'Hello ';
+                echo STRTOUPPER($hello . 'World');
+            ]]>
+        </code>
+        <answers>
+            <answer>Hello </answer>
+            <answer>PHP Fatal error:  Uncaught Error: Call to undefined function STRTOUPPER()</answer>
+            <answer correct="correct">HELLO WORLD</answer>
+        </answers>
+        <theory>Built-in functions are case insensitive</theory>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                define('HELLO', 'Hello World');
+                echo hello;
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">hello</answer>
+            <answer correct="correct">PHP Notice:  Use of undefined constant hello - assumed 'hello'</answer>
+            <answer>Hello World</answer>
+        </answers>
+        <theory>Constants are case sensitive</theory>
+        <reference>http://php.net/manual/en/language.constants.php</reference>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                $hello = 'Hello';
+                echo $hello;
+                ?><?= $hello ?>
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">HelloHello</answer>
+            <answer>Hello Hello</answer>
+            <answer>Hello</answer>
+            <answer>PHP Notice:  Undefined variable: hello</answer>
+        </answers>
+        <theory>Echo tags print a variable with a quick and easy-to-read syntax</theory>
+        <reference>http://php.net/manual/en/language.basic-syntax.phpmode.php</reference>
+    </item>
+    <!-- @todo add an item related to the last semicolon not mandatory -->
+    <!-- @todo add an item related to the last closing tag not mandatory -->
 </items>
