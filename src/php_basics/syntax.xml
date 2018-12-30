@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
-  <item>
-    <question>What is the output?</question>
-    <code>
-      <![CDATA[
-        <?php
-        echo 'Hello ';
-        ECHO 'World';
-      ]]>
-    </code>
-    <answers>
-      <answer>Hello </answer>
-      <answer>A warning</answer>
-      <answer>A fatal error</answer>
-      <answer correct="correct">Hello World</answer>
-    </answers>
-    <theory>PHP language constructs and functions are case insensitive</theory>
-  </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 'Hello ';
+                ECHO 'World';
+            ]]>
+        </code>
+        <answers>
+            <answer>Hello </answer>
+            <answer>PHP warning:  Undefined command: ECHO</answer>
+            <answer>PHP error:  Undefined command: ECHO</answer>
+            <answer correct="correct">Hello World</answer>
+        </answers>
+        <theory>Language constructs and functions are case insensitive</theory>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                $hello = 'Hello World';
+                echo $HELLO;
+            ]]>
+        </code>
+        <answers>
+            <answer>PHP error:  Undefined variable: HELLO</answer>
+            <answer correct="correct">PHP Notice:  Undefined variable: HELLO</answer>
+            <answer>Hello World</answer>
+        </answers>
+        <theory>Variables are case sensitive</theory>
+        <reference>http://php.net/manual/en/language.variables.basics.php</reference>
+    </item>
 </items>
