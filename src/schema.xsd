@@ -5,7 +5,7 @@
     <xs:element name="items">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="item" minOccurs="0">
+                <xs:element name="item" maxOccurs="999" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element ref="question" maxOccurs="1" minOccurs="1" />
