@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zend Certification (PHP) training</title>
+</head>
+
+<body>
+
+  <h1>Zend Certification (PHP) training</h1>
+
+  <script>
+  
+    window.onerror = function(e) {
+      alert(e);
+    };
+    
+    items = 0;
+
+    function reqListener() {
+      items += this.responseXML.getElementsByTagName('item').length;
+      alert(items);
+    }
+
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', reqListener);
+    oReq.open('GET', '../src/php_basics/syntax.xml');
+    oReq.send();
+    
+    var oReq2 = new XMLHttpRequest();
+    oReq2.addEventListener('load', reqListener);
+    oReq2.open('GET', '../src/php_basics/language_constructs_and_functions.xml');
+    oReq2.send();
+
+  </script>
+  
+</body>
+
+</html>
