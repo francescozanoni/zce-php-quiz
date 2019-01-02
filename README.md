@@ -3,7 +3,9 @@ Zend PHP certification training quiz
 
 ----
 
-List of Exam Topics (http://www.zend.com/en/services/certification/php-certification):
+## List of Exam Topics
+
+(from http://www.zend.com/en/services/certification/php-certification):
 
 PHP Basics
 - Syntax
@@ -152,3 +154,14 @@ Example of quiz item within XML file:
   
 </items>
 ```
+
+----
+
+## Demo
+
+1. start a local webserver:
+   ```bash
+   php -S localhost:8000
+   ```
+
+1. browse URL http://localhost:8000/demo
