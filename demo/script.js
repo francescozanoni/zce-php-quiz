@@ -2,24 +2,18 @@ window.onerror = function (e) {
     alert(e);
 };
 
-items = 0;
+items = [];
 
 function reqListener() {
-    items += this.responseXML.getElementsByTagName('item').length;
-    alert(items);
+    var currentItems = this.responseXML.getElementsByTagName('item');
+    if (currentItems.length > 0) {
+        for (var i = 0; i < currentItems.length; i++) {
+            items.push(currentItems.item(i));
+        }
+    }
 }
 
 var fileBasePath = '../src';
-
-var oReq = new XMLHttpRequest();
-oReq.addEventListener('load', reqListener);
-oReq.open('GET', fileBasePath + '/php_basics/syntax.xml');
-oReq.send();
-
-var oReq2 = new XMLHttpRequest();
-oReq2.addEventListener('load', reqListener);
-oReq2.open('GET', fileBasePath + '/php_basics/language_constructs_and_functions.xml');
-oReq2.send();
 
 var filePaths = [
     'arrays/array_functions.xml',
@@ -109,3 +103,10 @@ var filePaths = [
     'web_features/http_status_codes.xml',
     'web_features/sessions.xml'
 ];
+
+for (var i = 0; i < filePaths.length; i++) {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', reqListener);
+    oReq.open('GET', fileBasePath + '/' + filePaths[i]);
+    oReq.send();
+}
