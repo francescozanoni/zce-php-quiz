@@ -12,8 +12,7 @@ function renderItem(item) {
     renderedItem.appendChild(question);
 
     if (item.getElementsByTagName('code').length === 1) {
-        // @todo format code
-        var codeText = document.createTextNode(item.getElementsByTagName('code').item(0).textContent.trim());
+        var codeText = document.createTextNode(item.getElementsByTagName('code').item(0).textContent.trim().replace(/\n\s+/g, '\n'));
         var code = document.createElement('pre');
         code.appendChild(codeText);
         renderedItem.appendChild(code);
@@ -21,9 +20,15 @@ function renderItem(item) {
 
     var answers = document.createElement('ul');
     for (var i = 0; i < item.getElementsByTagName('answer').length; i++) {
-        // @todo handle correct answer attribute
+        var answerCheckbox = document.createElement('input');
+        answerCheckbox.setAttribute('type', 'checkbox');
+        answerCheckbox.setAttribute('value', item.getElementsByTagName('answer').item(i).textContent.trim());
+        if (item.getElementsByTagName('answer').item(i).hasAttribute('correct') === true) {
+            answerCheckbox.setAttribute('data-correct', 'correct');
+        }
         var answerText = document.createTextNode(item.getElementsByTagName('answer').item(i).textContent.trim());
         var answer = document.createElement('li');
+        answer.appendChild(answerCheckbox);
         answer.appendChild(answerText);
         answers.appendChild(answer);
     }

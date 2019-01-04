@@ -3,16 +3,16 @@
     <item>
         <question>Functions are translated to a set of language constructs, before execution.</question>
         <answers>
-            <answer correct="correct">True</answer>
-            <answer>False</answer>
+            <answer correct="correct">true</answer>
+            <answer>false</answer>
         </answers>
         <theory>Language costructs are understood directly by the parser because they are basic elements of the language.</theory>
     </item>
     <item>
         <question>Language constructs are translated to a set of functions, before execution.</question>
         <answers>
-            <answer>True</answer>
-            <answer correct="correct">False</answer>
+            <answer>true</answer>
+            <answer correct="correct">false</answer>
         </answers>
         <theory>Language costructs are understood directly by the parser because they are basic elements of the language.</theory>
     </item>
