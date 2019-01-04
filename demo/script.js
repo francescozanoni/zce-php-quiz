@@ -2,13 +2,44 @@ window.onerror = function (e) {
     alert(e);
 };
 
-items = [];
+function renderItem(item) {
+
+    var renderedItem = document.createElement('li');
+
+    var questionText = document.createTextNode(item.getElementsByTagName('question').item(0).textContent.trim());
+    var question = document.createElement('span');
+    question.appendChild(questionText);
+    renderedItem.appendChild(question);
+
+    if (item.getElementsByTagName('code').length === 1) {
+        // @todo format code
+        var codeText = document.createTextNode(item.getElementsByTagName('code').item(0).textContent.trim());
+        var code = document.createElement('pre');
+        code.appendChild(codeText);
+        renderedItem.appendChild(code);
+    }
+
+    var answers = document.createElement('ul');
+    for (var i = 0; i < item.getElementsByTagName('answer').length; i++) {
+        // @todo handle correct answer attribute
+        var answerText = document.createTextNode(item.getElementsByTagName('answer').item(i).textContent.trim());
+        var answer = document.createElement('li');
+        answer.appendChild(answerText);
+        answers.appendChild(answer);
+    }
+    renderedItem.appendChild(answers);
+
+    // @todo add hidden theory tag
+    // @todo add hidden reference tag
+
+    return renderedItem;
+}
 
 function reqListener() {
     var currentItems = this.responseXML.getElementsByTagName('item');
     if (currentItems.length > 0) {
         for (var i = 0; i < currentItems.length; i++) {
-            items.push(currentItems.item(i));
+            document.getElementById('container').appendChild(renderItem(currentItems.item(i)));
         }
     }
 }
