@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
     <item>
-        <question>Functions are translated to a set of language constructs, before execution.</question>
+        <question>Built-in functions are translated to a set of language constructs, before execution.</question>
         <answers>
             <answer correct="correct">true</answer>
             <answer>false</answer>
@@ -9,11 +9,47 @@
         <theory>Language costructs are understood directly by the parser because they are basic elements of the language.</theory>
     </item>
     <item>
-        <question>Language constructs are translated to a set of functions, before execution.</question>
+        <question>Language constructs are translated to a set of built-in functions, before execution.</question>
         <answers>
             <answer>true</answer>
             <answer correct="correct">false</answer>
         </answers>
         <theory>Language costructs are understood directly by the parser because they are basic elements of the language.</theory>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                $printed = array_map('print', ['a', 'b']);
+                print_r($printed);
+            ]]>
+        </code>
+        <answers>
+            <answer>ab</answer>
+            <answer>11</answer>
+            <answer>Array ( [0] => a [1] => b )</answer>
+            <answer>Array ( [0] => 1 [1] => 1 )</answer>
+            <answer correct="correct">PHP Warning:  array_map() expects parameter 1 to be a valid callback, function 'print' not found or invalid function name</answer>
+        </answers>
+        <theory>Language constructs cannot be used as callback functions.</theory>
+    </item>
+        <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                $printed = array_map('strlen', ['a', 'b']);
+                print_r($printed);
+            ]]>
+        </code>
+        <answers>
+            <answer>ab</answer>
+            <answer>11</answer>
+            <answer>Array ( [0] => a [1] => b )</answer>
+            <answer correct="correct">Array ( [0] => 1 [1] => 1 )</answer>
+            <answer>PHP Warning:  array_map() expects parameter 1 to be a valid callback, function 'strlen' not found or invalid function name</answer>
+        </answers>
+        <theory>Built-in functions can be used as callback functions.</theory>
     </item>
 </items>
