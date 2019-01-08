@@ -18,7 +18,6 @@ function renderItem(item) {
         renderedItem.appendChild(code);
     }
 
-    var answers = document.createElement('ul');
     for (var i = 0; i < item.getElementsByTagName('answer').length; i++) {
         var answerCheckbox = document.createElement('input');
         answerCheckbox.setAttribute('type', 'checkbox');
@@ -27,12 +26,11 @@ function renderItem(item) {
             answerCheckbox.setAttribute('data-correct', 'correct');
         }
         var answerText = document.createTextNode(item.getElementsByTagName('answer').item(i).textContent.trim());
-        var answer = document.createElement('li');
+        var answer = document.createElement('div');
         answer.appendChild(answerCheckbox);
         answer.appendChild(answerText);
-        answers.appendChild(answer);
+        renderedItem.appendChild(answer);
     }
-    renderedItem.appendChild(answers);
 
     // @todo add hidden theory tag
     // @todo add hidden reference tag

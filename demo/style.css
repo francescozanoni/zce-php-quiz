@@ -1,0 +1,11 @@
+body {
+    font-size: 12px;
+    font-family: sans-serif;
+}
+li {
+    margin: 2em auto 2em auto;
+}
+pre {
+    background-color: #EEEEEE;
+    padding: 1em;
+}
