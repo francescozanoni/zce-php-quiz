@@ -33,8 +33,9 @@
             <answer correct="correct">PHP Warning:  array_map() expects parameter 1 to be a valid callback, function 'print' not found or invalid function name</answer>
         </answers>
         <theory>Language constructs cannot be used as callback functions.</theory>
+        <reference>http://php.net/manual/en/language.types.callable.php</reference>
     </item>
-        <item>
+    <item>
         <question>What is the output?</question>
         <code>
             <![CDATA[
@@ -51,5 +52,8 @@
             <answer>PHP Warning:  array_map() expects parameter 1 to be a valid callback, function 'strlen' not found or invalid function name</answer>
         </answers>
         <theory>Built-in functions can be used as callback functions.</theory>
+        <reference>http://php.net/manual/en/language.types.callable.php</reference>
     </item>
+    <!-- @todo add items related to return values of "print" and "echo" -->
+    <!-- @todo add items related to usage of "print" and "echo" as function parameters -->
 </items>

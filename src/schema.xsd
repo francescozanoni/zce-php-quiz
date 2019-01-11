@@ -13,7 +13,7 @@
                             <xs:element name="answers" maxOccurs="1" minOccurs="1">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element ref="answer" maxOccurs="4" minOccurs="2" />
+                                        <xs:element ref="answer" maxOccurs="6" minOccurs="2" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

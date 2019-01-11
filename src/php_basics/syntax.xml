@@ -88,4 +88,89 @@
     </item>
     <!-- @todo add an item related to the last semicolon not mandatory -->
     <!-- @todo add an item related to the last closing tag not mandatory -->
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 3 + 011;
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">12</answer>
+            <answer>14</answer>
+            <answer>014</answer>
+            <answer>6</answer>
+        </answers>
+        <theory>Octal numbers are represented with a leading zero</theory>
+        <reference>http://php.net/manual/en/language.types.integer.php</reference>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 3 + 0x11;
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">20</answer>
+            <answer>14</answer>
+            <answer>0x14</answer>
+            <answer>6</answer>
+        </answers>
+        <theory>Hexadecimal numbers are represented with a leading "0x"</theory>
+        <reference>http://php.net/manual/en/language.types.integer.php</reference>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 2 + 0b11;
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">5</answer>
+            <answer>12</answer>
+            <answer>0b13</answer>
+            <answer>6</answer>
+        </answers>
+        <theory>Binary numbers are represented with a leading "0b"</theory>
+        <reference>http://php.net/manual/en/language.types.integer.php</reference>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 0.1e10;
+            ]]>
+        </code>
+        <answers>
+            <answer correct="correct">5</answer>
+            <answer>12</answer>
+            <answer>0b13</answer>
+            <answer>6</answer>
+        </answers>
+        <theory>Binary numbers are represented with a leading "0b"</theory>
+        <reference>http://php.net/manual/en/language.types.integer.php</reference>
+    </item>
+    <item>
+        <question>What is the output?</question>
+        <code>
+            <![CDATA[
+                <?php
+                echo 0.1e2 + 1E-1;
+            ]]>
+        </code>
+        <answers>
+            <answer>20</answer>
+            <answer>1.1</answer>
+            <answer correct="correct">10.1</answer>
+            <answer>12</answer>
+        </answers>
+        <theory>Floating point numbers can be represented with exponential annotation (case insensitive)</theory>
+        <reference>http://php.net/manual/en/language.types.float.php</reference>
+    </item>
 </items>
