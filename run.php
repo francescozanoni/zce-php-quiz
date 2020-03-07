@@ -1,17 +1,34 @@
 <?php
 declare(strict_types=1);
 
+$reportFilePath = __DIR__ . "/report_" . date("YmdHis") . ".txt";
+
+$p = new PharData(__DIR__ . "/vendor/php_manual_en.tar.gz");
+$p->extractTo(sys_get_temp_dir());
+
 // https://stackoverflow.com/questions/13718500/using-xpath-with-php-to-parse-html
 libxml_use_internal_errors(true);
+
 $dom = new DomDocument;
-$dom->loadHTMLFile("php-bigxhtml.html");
-$xpath = new DomXPath($dom);
 
-/* Query all <div> nodes with id attribute starting with "example-" */
-// https://stackoverflow.com/questions/26366391/xpath-selecting-attributes-using-starts-with?rq=1
-$exampleNodes = $xpath->query("//div[starts-with(@id, 'example-')]");
-
-$reportFilePath = __DIR__ . "/report_" . date("YmdHis") . ".txt";
+foreach (glob(sys_get_temp_dir() . "/php-chunked-xhtml/*.html") as $filePath) {
+   
+   $dom->loadHTMLFile($filePath);
+   $exampleNodes = getExampleNodes($dom);
+   
+   /*
+   if ($exampleNodes->length === 0) {
+       continue;
+   }
+   */
+   
+    $url = "https://www.php.net/manual/en/" . str_replace(".html", "", basename($filePath)) . ".php";
+    /*
+    if (isUrlValid($url) === false) {
+        echo "[URL " . $url . " does not exist]";
+        continue;
+    }
+    */
 
 for ($i = 0; $i < $exampleNodes->length; $i++) {
 
@@ -25,25 +42,41 @@ for ($i = 0; $i < $exampleNodes->length; $i++) {
         continue;
     }
 
-    /*
-    if (isUrlValid($url) === false) {
-        echo "[URL " . $url . " does not exist]";
-        continue;
-    }
-    */
-
     $codeHtml = $codeNode->ownerDocument->saveXML($codeNode);
     $code = extractText($codeHtml);
 
     $outputHtml = $outputNode->ownerDocument->saveXML($outputNode);
     $output = extractText($outputHtml);
 
-    $url = getUrlFromDomElement($exampleNode, $xpath);
-
     storeCodeOutputUrl($reportFilePath, $code, $output, $url);
 
     echo ".";
 
+}
+
+unlink($filePath);
+
+}
+
+
+
+/**
+ * @param DomDocument $document
+ *
+ * @return DomNodeList
+ *
+ * @see https://stackoverflow.com/questions/26366391/xpath-selecting-attributes-using-starts-with?rq=1
+ */
+function getExampleNodes(DomDocument $document): DomNodeList
+{
+    $xpath = new DomXPath($document);
+
+    // Query all <div> nodes with id attribute starting with "example-"
+    $exampleNodes = $xpath->query("//div[starts-with(@id, 'example-')]");
+    
+    unset($xpath);
+    
+    return $exampleNodes;
 }
 
 function isUrlValid(string $url): bool
@@ -62,22 +95,6 @@ function isUrlValid(string $url): bool
     curl_close($curl);
 
     return $result;
-}
-
-function getUrlFromDomElement(DOMElement $element, DOMXPath $xpath): string
-{
-    // https://stackoverflow.com/questions/28237694/xpath-get-parent-node-from-child-node
-    // https://stackoverflow.com/questions/5350666/xpath-or-operator-for-different-nodes
-    $page = $xpath
-        ->query(
-            '//div[@id="' . $element->getAttribute("id") . '"]/ancestor::div[@class="section"]' .
-            '|' .
-            '//div[@id="' . $element->getAttribute("id") . '"]/ancestor::div[@class="sect1"]'
-        )
-        ->item(0)
-        ->getAttribute("id");
-    $page = "https://www.php.net/manual/en/" . $page . ".php";
-    return $page;
 }
 
 function storeCodeOutputUrl(string $filePath, string $code, string $output, string $url)
