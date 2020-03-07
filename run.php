@@ -14,52 +14,48 @@ libxml_use_internal_errors(true);
 $dom = new DomDocument;
 
 foreach (glob($temporaryPath . "/php-chunked-xhtml/*.html") as $filePath) {
-   
-   $dom->loadHTMLFile($filePath);
-   $exampleNodes = getExampleNodes($dom);
-   
-   /*
-   if ($exampleNodes->length === 0) {
-       continue;
-   }
-   */
-   
+
+    $dom->loadHTMLFile($filePath);
+    $exampleNodes = getExampleNodes($dom);
+
+    if ($exampleNodes->length === 0) {
+        continue;
+    }
+
     $url = "https://www.php.net/manual/en/" . preg_replace('/\.html$/', ".php", basename($filePath));
-    /*
+
     if (isUrlValid($url) === false) {
         echo "[URL " . $url . " does not exist]";
         continue;
     }
-    */
 
-for ($i = 0; $i < $exampleNodes->length; $i++) {
+    for ($i = 0; $i < $exampleNodes->length; $i++) {
 
-    $exampleNode = $exampleNodes->item($i);
+        $exampleNode = $exampleNodes->item($i);
 
-    list($codeNode, $outputNode) = getCodeAndOutputNodes($exampleNode);
+        list($codeNode, $outputNode) = getCodeAndOutputNodes($exampleNode);
 
-    // If either code or output are not available,
-    // no way to further process this example.
-    if ($codeNode === null || $outputNode === null) {
-        continue;
+        // If either code or output are not available,
+        // no way to further process this example.
+        if ($codeNode === null || $outputNode === null) {
+            continue;
+        }
+
+        $codeHtml = $codeNode->ownerDocument->saveXML($codeNode);
+        $code = extractText($codeHtml);
+
+        $outputHtml = $outputNode->ownerDocument->saveXML($outputNode);
+        $output = extractText($outputHtml);
+
+        storeCodeOutputUrl($reportFilePath, $code, $output, $url);
+
+        echo ".";
+
     }
 
-    $codeHtml = $codeNode->ownerDocument->saveXML($codeNode);
-    $code = extractText($codeHtml);
-
-    $outputHtml = $outputNode->ownerDocument->saveXML($outputNode);
-    $output = extractText($outputHtml);
-
-    storeCodeOutputUrl($reportFilePath, $code, $output, $url);
-
-    echo ".";
+    unlink($filePath);
 
 }
-
-unlink($filePath);
-
-}
-
 
 
 /**
@@ -75,9 +71,9 @@ function getExampleNodes(DomDocument $document): DomNodeList
 
     // Query all <div> nodes with id attribute starting with "example-"
     $exampleNodes = $xpath->query("//div[starts-with(@id, 'example-')]");
-    
+
     unset($xpath);
-    
+
     return $exampleNodes;
 }
 
