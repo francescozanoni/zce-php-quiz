@@ -1,17 +1,19 @@
 <?php
 declare(strict_types=1);
 
-$reportFilePath = __DIR__ . "/report_" . date("YmdHis") . ".txt";
+$reportFilePath = __DIR__ . "/vendor/report_" . date("YmdHis") . ".txt";
+$phpManualFilePath = __DIR__ . "/vendor/php_manual_en.tar.gz";
+$temporaryPath = __DIR__ . "/vendor";
 
-$p = new PharData(__DIR__ . "/vendor/php_manual_en.tar.gz");
-$p->extractTo(sys_get_temp_dir());
+$p = new PharData($phpManualFilePath);
+$p->extractTo($temporaryPath, null, true);
 
 // https://stackoverflow.com/questions/13718500/using-xpath-with-php-to-parse-html
 libxml_use_internal_errors(true);
 
 $dom = new DomDocument;
 
-foreach (glob(sys_get_temp_dir() . "/php-chunked-xhtml/*.html") as $filePath) {
+foreach (glob($temporaryPath . "/php-chunked-xhtml/*.html") as $filePath) {
    
    $dom->loadHTMLFile($filePath);
    $exampleNodes = getExampleNodes($dom);
@@ -22,7 +24,7 @@ foreach (glob(sys_get_temp_dir() . "/php-chunked-xhtml/*.html") as $filePath) {
    }
    */
    
-    $url = "https://www.php.net/manual/en/" . str_replace(".html", "", basename($filePath)) . ".php";
+    $url = "https://www.php.net/manual/en/" . preg_replace('/\.html$/', ".php", basename($filePath));
     /*
     if (isUrlValid($url) === false) {
         echo "[URL " . $url . " does not exist]";
