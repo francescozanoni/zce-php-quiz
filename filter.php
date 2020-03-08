@@ -144,6 +144,8 @@ OR url LIKE "%.exif%"
 OR url LIKE "%.goto%"
 OR url LIKE "%/normalizer%"
 OR url LIKE "%.volatile%"
+OR url LIKE "%.chown%"
+OR url LIKE "%-sun%"
 ');
 } catch (PDOException $e) {
     echo $e->getMessage(), PHP_EOL;
