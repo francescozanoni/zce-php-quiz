@@ -139,6 +139,11 @@ OR url LIKE "%.metaphone%"
 OR url LIKE "%from-jd%"
 OR url LIKE "%gregorian%"
 OR url LIKE "%.ibase%"
+OR url LIKE "%.parse-ini%"
+OR url LIKE "%.exif%"
+OR url LIKE "%.goto%"
+OR url LIKE "%/normalizer%"
+OR url LIKE "%.volatile%"
 ');
 } catch (PDOException $e) {
     echo $e->getMessage(), PHP_EOL;
