@@ -146,6 +146,8 @@ OR url LIKE "%/normalizer%"
 OR url LIKE "%.volatile%"
 OR url LIKE "%.chown%"
 OR url LIKE "%-sun%"
+OR url LIKE "%.curl-multi%"
+OR url LIKE "%.newt%"
 ');
 } catch (PDOException $e) {
     echo $e->getMessage(), PHP_EOL;
