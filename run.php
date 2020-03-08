@@ -4,7 +4,7 @@ declare(strict_types=1);
 // #####################################################################################################################
 
 $temporaryPath = __DIR__ . "/vendor";
-$reportFilePath = $temporaryPath . "/report_" . date("YmdHis") . ".sqlite";
+$reportFilePath = $temporaryPath . "/report_" . date("YmdHis") . ".ser";
 $phpManualArchiveFilePath = $temporaryPath . "/php_manual_en.tar.gz";
 $phpManualFolderPath = $temporaryPath . "/php_manual";
 $documentationBaseUrl = "https://www.php.net/manual/en";
@@ -95,30 +95,8 @@ foreach (glob($temporaryPath . "/php-chunked-xhtml/*.html") as $filePath) {
     unlink($filePath);
 
 }
-$pdo = null;
-try {
-    $pdo = new PDO("sqlite:" . $reportFilePath);
-    $pdo->exec(
-        "CREATE TABLE examples (
-          id   INTEGER PRIMARY KEY AUTOINCREMENT,
-          example_id TEXT NOT NULL UNIQUE,
-          code TEXT NOT NULL,
-          output TEXT NOT NULL,
-          url TEXT NOT NULL
-        )"
-    );
-    $stmt = $pdo->prepare('INSERT INTO examples VALUES (NULL, ?, ?, ?, ?)');
-    foreach ($data as $datum)
-    {
-        $stmt->execute(array_values($datum));
-    }
-    $stmt = null;
-    unset($stmt);
-} catch (PDOException $e) {
-    echo $e->getMessage(), PHP_EOL;
-}
-$pdo = null;
-unset($pdo);
+
+file_put_contents($reportFilePath, serialize($data));
 
 // #####################################################################################################################
 

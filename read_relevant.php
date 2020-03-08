@@ -11,12 +11,16 @@ $reportFilePath = $temporaryPath . "/report.sqlite";
 $pdo = null;
 try {
     $pdo = new PDO("sqlite:" . $reportFilePath);
-    $stmt = $pdo->query('SELECT DISTINCT url
-                        FROM examples');
-    foreach ($stmt as $row)
-    {
-        file_put_contents($temporaryPath . "/urls.txt", $row['url'] . PHP_EOL, FILE_APPEND);
-        echo $row['url'] . PHP_EOL;
+    $stmt = $pdo->query("SELECT DISTINCT url
+                         FROM examples
+                         WHERE is_relevant = 1");
+    foreach ($stmt as $index => $row) {
+        $url = $row["url"];
+        preg_match('#^https://www.php.net/manual/en/(.+)\.php$#', $url, $matches);
+        printf("%-60s", $matches[1]);
+        if ($index % 3 === 0) {
+            echo PHP_EOL;
+        }
     }
     $stmt = null;
     unset($stmt);
@@ -25,3 +29,5 @@ try {
 }
 $pdo = null;
 unset($pdo);
+
+echo PHP_EOL;
